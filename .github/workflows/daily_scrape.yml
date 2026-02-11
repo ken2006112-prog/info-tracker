@@ -29,6 +29,12 @@ jobs:
         run: |
           echo "${{ secrets.CONFIG_YAML }}" > config.yaml
           echo "${{ secrets.COOKIES_JSON }}" > cookies.json
+          # Inject Discord Webhook from secret if it exists (optional override)
+          # Or user can just put the webhook inside CONFIG_YAML.
+          # But providing a separate secret is safer/easier for some.
+          # For simplicity, let's assume user puts the webhook INSIDE CONFIG_YAML.
+          # So no change needed here actually, unless we want to force it.
+          # Let's keep it simple: User edits config.yaml locally, pastes webhook, then copies content to secret.
 
       - name: Run Scraper
         run: |

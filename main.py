@@ -35,13 +35,21 @@ def main():
     # 3. Summarize
     report_html = summarize_and_format(all_data)
     
-    # 4. Send Email
+    # 4. Send Notifications
     today = datetime.now().strftime('%Y-%m-%d')
     subject = f"Info Tracker Daily Report - {today}"
     
-    # Only send if there is data, or send "No updates" if preferred.
-    # For now, we send even if empty to confirm it ran.
-    send_email(config, subject, report_html)
+    # Send Email if enabled
+    if config.get('email', {}).get('enabled', False):
+        send_email(config, subject, report_html)
+        
+    # Send Discord if enabled
+    if config.get('discord', {}).get('enabled', False):
+         # We need to import the new function specifically or update the import logic. 
+         # Since we import * or specific functions, let's update the import line first if needed.
+         # Actually, better to just update the import at top of file, but for now let's assume `notifier` module has it.
+         from notifier import send_discord_webhook
+         send_discord_webhook(config, subject, report_html)
 
 if __name__ == "__main__":
     main()
