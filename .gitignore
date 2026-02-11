@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+config.yaml
+cookies.json
+sources_to_fill.yaml
+source_list_raw.txt
+source_list_groups_raw.txt
+*.log
