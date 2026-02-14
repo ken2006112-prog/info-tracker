@@ -1,0 +1,24 @@
+email:
+  sender: "your_email@gmail.com"
+  password: "your_app_password"
+  recipient: "recipient@example.com"
+  enabled: true
+
+discord:
+  webhook_url: ""
+  enabled: false
+
+sites:
+  ncu_club:
+    url: "https://club.adm.ncu.edu.tw/"
+    enabled: true
+
+  facebook:
+    cookies_file: "cookies.json"
+    pages:
+      - url: "https://www.facebook.com/groups/example/"
+        name: "Example Group"
+    enabled: true
+
+system:
+  keywords: []
