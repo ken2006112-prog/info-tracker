@@ -26,9 +26,12 @@ jobs:
           playwright install chromium
 
       - name: Create Config Files from Secrets
+        env:
+          CONFIG_YAML: ${{ secrets.CONFIG_YAML }}
+          COOKIES_JSON: ${{ secrets.COOKIES_JSON }}
         run: |
-          echo "${{ secrets.CONFIG_YAML }}" > config.yaml
-          echo "${{ secrets.COOKIES_JSON }}" > cookies.json
+          echo "$CONFIG_YAML" > config.yaml
+          echo "$COOKIES_JSON" > cookies.json
           # Inject Discord Webhook from secret if it exists (optional override)
           # Or user can just put the webhook inside CONFIG_YAML.
           # But providing a separate secret is safer/easier for some.
