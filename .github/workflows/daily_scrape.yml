@@ -39,3 +39,4 @@ jobs:
       - name: Run Scraper
         run: |
           python main.py
+# trigger refresh
