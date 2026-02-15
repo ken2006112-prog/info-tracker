@@ -1,24 +1,43 @@
+
+# 1. Email Configuration (Required)
 email:
   sender: "your_email@gmail.com"
-  password: "your_app_password"
-  recipient: "recipient@example.com"
+  password: "your_app_password" 
+  recipient: "your_email@gmail.com"
   enabled: true
 
+# 2. Discord Configuration (Optional)
 discord:
-  webhook_url: ""
+  webhook_url: "" 
   enabled: false
 
+# 3. Source Configuration
 sites:
   ncu_club:
     url: "https://club.adm.ncu.edu.tw/"
     enabled: true
 
-  facebook:
-    cookies_file: "cookies.json"
-    pages:
-      - url: "https://www.facebook.com/groups/example/"
-        name: "Example Group"
+  ncu_incu:
+    url: "https://cis.ncu.edu.tw/iNCU/publicService/activityQuery"
     enabled: true
 
-system:
-  keywords: []
+  ncu_career:
+    url: "https://careercenter.ncu.edu.tw/activities"
+    enabled: true
+
+  google_site:
+    url: "https://sites.google.com/view/adaptive2021"
+    enabled: true
+
+  facebook:
+    # Path to cookies file (exported from EditHeader/Cookie extensions)
+    # Required for private groups, optional for public pages but recommended.
+    cookies_file: "cookies.json" 
+    
+    pages:
+      - name: "NCU Talk" # Example Page
+        url: "https://www.facebook.com/ncutalk" 
+    
+    groups:
+      - name: "NCU Group" # Example Group
+        url: "https://www.facebook.com/groups/example"

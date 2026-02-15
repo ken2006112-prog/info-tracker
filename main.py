@@ -32,6 +32,21 @@ def main():
         fb_data = scrape_facebook_page(config)
         all_data.extend(fb_data)
         
+    # 3. Scrape iNCU
+    if config['sites'].get('ncu_incu', {}).get('enabled'):
+        from scrapers.ncu_incu import scrape_ncu_incu
+        all_data.extend(scrape_ncu_incu(config))
+
+    # 4. Scrape NCU Career
+    if config['sites'].get('ncu_career', {}).get('enabled'):
+        from scrapers.ncu_career import scrape_ncu_career
+        all_data.extend(scrape_ncu_career(config))
+
+    # 5. Scrape Google Site
+    if config['sites'].get('google_site', {}).get('enabled'):
+        from scrapers.google_site import scrape_google_site
+        all_data.extend(scrape_google_site(config))
+        
     # 3. Summarize
     report_html = summarize_and_format(all_data)
     
