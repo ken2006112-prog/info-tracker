@@ -17,9 +17,16 @@ def scrape_ncu_incu(config):
             # iNCU can be slow, giving it more time
             page.goto(url, timeout=90000)
             
+            # Scroll down multiple times to load more events
+            # The site might not be in chronological order, so we need to fetch more.
+            for _ in range(5): # Scroll 5 times
+                page.mouse.wheel(0, 3000)
+                page.wait_for_timeout(1000) # Wait for load
+
             cards = page.locator(".card.rounded-3.my-4").all()
             
-            for card in cards[:10]:
+            # Increased limit since we are scrolling for more
+            for card in cards[:30]: 
                 try:
                     title_el = card.locator(".card-title")
                     title = title_el.inner_text().strip()
