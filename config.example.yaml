@@ -1,43 +1,33 @@
-
-# 1. Email Configuration (Required)
-email:
-  sender: "your_email@gmail.com"
-  password: "your_app_password" 
-  recipient: "your_email@gmail.com"
-  enabled: true
-
-# 2. Discord Configuration (Optional)
-discord:
-  webhook_url: "" 
-  enabled: false
-
-# 3. Source Configuration
 sites:
-  ncu_club:
-    url: "https://club.adm.ncu.edu.tw/"
-    enabled: true
-
-  ncu_incu:
-    url: "https://cis.ncu.edu.tw/iNCU/publicService/activityQuery"
-    enabled: true
-
-  ncu_career:
-    url: "https://careercenter.ncu.edu.tw/activities"
-    enabled: true
-
-  google_site:
-    url: "https://sites.google.com/view/adaptive2021"
-    enabled: true
-
+  Technews 科技新報:
+    url: https://technews.tw/category/business/
+  ithome:
+    url: https://www.ithome.com.tw/news
+  Inside 硬塞的:
+    url: https://www.inside.com.tw/
+  Cool3cTkbang:
+    url: https://www.cool3c.com/
+  FreeCodeCamp:
+    url: https://www.freecodecamp.org/news/
+  Computer King Ada (電腦王阿達):
+    url: https://www.kocpc.com.tw/category/news
+    
+  # Facebook Pages/Groups
   facebook:
-    # Path to cookies file (exported from EditHeader/Cookie extensions)
-    # Required for private groups, optional for public pages but recommended.
-    cookies_file: "cookies.json" 
-    
-    pages:
-      - name: "NCU Talk" # Example Page
-        url: "https://www.facebook.com/ncutalk" 
-    
+    # Set to true to enable "Doom Scroll" on personal feed
+    feed_enabled: true
+    scroll_count: 15
     groups:
-      - name: "NCU Group" # Example Group
-        url: "https://www.facebook.com/groups/example"
+     - https://www.facebook.com/groups/baogo.developer
+     - https://www.facebook.com/groups/ChatGPT.TW
+     - https://www.facebook.com/Microsoft.Student.Ambassadors.TW
+     - https://www.facebook.com/groups/1089148002685934
+
+ai:
+  enabled: true
+  api_key: "YOUR_GEMINI_API_KEY"
+
+system:
+  rate_limit_delay: 8
+  
+cookies_file: "cookies.json"

@@ -7,3 +7,13 @@ sources_to_fill.yaml
 source_list_raw.txt
 source_list_groups_raw.txt
 *.log
+
+# Debug & Test Files
+debug_*.png
+*_debug.html
+inspect_feed_html.py
+test_*.py
+send_test_report_v2.py
+find_fb.py
+my_groups.json
+history.json
