@@ -42,7 +42,11 @@ def scrape_google_site(config):
             # Or valid links.
             
             # Let's try to get all text in the main content area.
-            content_text = page.locator("main").inner_text()
+            # Try to get content from main, else body
+            try:
+                content_text = page.locator("main").inner_text(timeout=5000)
+            except:
+                content_text = page.locator("body").inner_text()
             
             # This is too unstructured. Let's return a single entry checking if the page changed?
             # Or just scrape the first few "lines" that look like events.
