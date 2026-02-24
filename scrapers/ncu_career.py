@@ -29,10 +29,15 @@ def scrape_ncu_career(config):
                         texts = row.locator("p").all_inner_texts()
                         if len(texts) >= 3:
                             date_str = texts[0].strip()
-                            # Distinguish between Activity (Start, End, Title) and News (Date, Title, Clicks)
-                            title = texts[2].strip() 
-                            if "點閱" in title or title.isdigit() or len(texts[-1]) < 15:
-                                title = texts[1].strip()
+                            # Use URL path to determine text structure precisely
+                            url_path = url.split('/')[-1]
+                            
+                            if url_path == 'activities':
+                                # activities: Start Date [0], End Date [1], Title [2]
+                                title = texts[2].strip().split('\n')[0] if len(texts) > 2 else "No Title"
+                            else:
+                                # news, extra-event, internship: Post Date [0], Title [1], Clicks [2]
+                                title = texts[1].strip().split('\n')[0] if len(texts) > 1 else "No Title"
                                 
                             link_element = row.locator("..") # Parent is the <a> tag
                             link = link_element.get_attribute("href")
