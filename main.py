@@ -47,35 +47,66 @@ def main():
         config = yaml.safe_load(f)
 
     all_items = []
+    error_log = []
     
     # 2. Scrape NCU Sources
     sites = config.get('sites', {})
     
     if sites.get('ncu_club', {}).get('enabled', False):
-        logging.info(f"Scraping NCU Club: {sites['ncu_club']['url']}")
-        all_items.extend(scrape_ncu_club(config))
-        
+        try:
+            logging.info(f"Scraping NCU Club: {sites['ncu_club']['url']}")
+            all_items.extend(scrape_ncu_club(config))
+        except Exception as e:
+            msg = f"Error building NCU Club scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
+            
     if sites.get('ncu_finance', {}).get('enabled', False):
-        logging.info(f"Scraping NCU Finance: {sites['ncu_finance']['url']}")
-        all_items.extend(scrape_ncu_finance(config))
+        try:
+            logging.info(f"Scraping NCU Finance: {sites['ncu_finance']['url']}")
+            all_items.extend(scrape_ncu_finance(config))
+        except Exception as e:
+            msg = f"Error building NCU Finance scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     if sites.get('ncu_incu', {}).get('enabled', False):
-        logging.info(f"Scraping NCU iNCU: {sites['ncu_incu']['url']}")
-        all_items.extend(scrape_ncu_incu(config))
-        
+        try:
+            logging.info(f"Scraping NCU iNCU: {sites['ncu_incu']['url']}")
+            all_items.extend(scrape_ncu_incu(config))
+        except Exception as e:
+            msg = f"Error building NCU iNCU scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
+            
     if sites.get('ncu_career', {}).get('enabled', False):
-        logging.info(f"Scraping NCU Career: {sites['ncu_career']['url']}")
-        all_items.extend(scrape_ncu_career(config))
+        try:
+            logging.info(f"Scraping NCU Career: {sites['ncu_career']['url']}")
+            all_items.extend(scrape_ncu_career(config))
+        except Exception as e:
+            msg = f"Error building NCU Career scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     if sites.get('google_site', {}).get('enabled', False):
-         logging.info(f"Scraping Adaptive Learning: {sites['google_site']['url']}")
-         all_items.extend(scrape_google_site(config))
+        try:
+            logging.info(f"Scraping Adaptive Learning: {sites['google_site']['url']}")
+            all_items.extend(scrape_google_site(config))
+        except Exception as e:
+            msg = f"Error building Google Site scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     # 3. Scrape KOCPC
     if config.get('kocpc', {}).get('enabled', False):
-         logging.info(f"Scraping KOCPC: {config['kocpc']['url']}")
-         from scrapers.kocpc import scrape_kocpc
-         all_items.extend(scrape_kocpc(config['kocpc']['url']))
+        try:
+            logging.info(f"Scraping KOCPC: {config['kocpc']['url']}")
+            from scrapers.kocpc import scrape_kocpc
+            all_items.extend(scrape_kocpc(config['kocpc']['url']))
+        except Exception as e:
+            msg = f"Error building KOCPC scraper: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     # 3. Scrape Facebook Groups
     if sites.get('facebook', {}).get('enabled', False):
@@ -85,14 +116,21 @@ def main():
             fb_items = scrape_facebook_page(config)
             all_items.extend(fb_items)
         except Exception as e:
-            logging.error(f"Error scraping Facebook Pages: {e}")
+            msg = f"Error scraping Facebook Pages: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     # 3.5 Personal Feed "Doom Scroll"
     if config['sites'].get('facebook', {}).get('feed_enabled', False):
-        from scrapers.facebook import scrape_personal_feed
-        logging.info("Starting Personal Feed Doom Scroll...")
-        feed_items = scrape_personal_feed(config)
-        all_items.extend(feed_items)
+        try:
+            from scrapers.facebook import scrape_personal_feed
+            logging.info("Starting Personal Feed Doom Scroll...")
+            feed_items = scrape_personal_feed(config)
+            all_items.extend(feed_items)
+        except Exception as e:
+            msg = f"Error scraping Facebook Feed: {str(e)}"
+            logging.error(msg)
+            error_log.append(msg)
 
     # 4. Filter New Items
     history = load_history()
@@ -107,8 +145,8 @@ def main():
     logging.info(f"Total items scraped: {len(all_items)}")
     logging.info(f"New items to report: {len(new_items)}")
     
-    if not new_items:
-        logging.info("No new items found. Skipping email.")
+    if not new_items and not error_log:
+        logging.info("No new items found and no errors. Skipping email.")
         return
 
     # --- Refactored: Group First, then Summarize Source ---
@@ -139,7 +177,7 @@ def main():
                 logging.error(f"Error summarizing {source}: {e}")
 
     # 5. Summarize (Generate Report)
-    report_html = summarize_and_format(grouped_data)
+    report_html = summarize_and_format(grouped_data, error_log)
     
     # 6. Send Notifications
     today = datetime.now().strftime('%Y-%m-%d')
@@ -154,7 +192,7 @@ def main():
     # Send Discord if enabled
     if config.get('discord', {}).get('enabled', False):
         logging.info("Attempting to send Discord webhook...")
-        send_discord_webhook(config, subject, report_html)
+        send_discord_webhook(config, subject, report_html, error_log)
 
     # 7. Save History
     save_history(history)

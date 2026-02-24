@@ -1,14 +1,23 @@
 
-def summarize_and_format(grouped_data):
+def summarize_and_format(grouped_data, errors=None):
     """
     Takes a dictionary of {source_name: {summary: str, items: [list]}}
     Returns an HTML string.
     """
-    if not grouped_data:
+    if not grouped_data and not errors:
         return "<p>No new items found.</p>"
 
     html = "<html><body style='font-family: Arial, sans-serif; color: #333; line-height: 1.5;'>"
     html += "<h2 style='color: #2c3e50;'>📅 Daily Info Tracker Report</h2>\n"
+
+    # Insert System Errors Alert Banner
+    if errors:
+        html += "<div style='background-color: #ffebee; border: 2px solid #ff5252; padding: 15px; border-radius: 5px; margin-bottom: 20px;'>"
+        html += "<h3 style='color: #c0392b; margin-top: 0;'>🚨 System Error Alert (Scrapers Failed)</h3>"
+        html += "<ul style='color: #c0392b; padding-left: 20px; font-size: 0.9em;'>"
+        for err in errors:
+            html += f"<li>{err}</li>"
+        html += "</ul></div>\n"
     
     for source, data in grouped_data.items():
         summary = data.get('summary')

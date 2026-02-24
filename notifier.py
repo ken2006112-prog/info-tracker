@@ -5,7 +5,7 @@ import logging
 import requests
 import json
 
-def send_discord_webhook(config, subject, body_html):
+def send_discord_webhook(config, subject, body_html, errors=None):
     """
     Sends a message to Discord via Webhook.
     Note: Discord webhooks don't render HTML. We need to convert to basic text or markdown.
@@ -20,9 +20,18 @@ def send_discord_webhook(config, subject, body_html):
     soup = BeautifulSoup(body_html, 'html.parser')
     text_content = soup.get_text(separator='\n')
     
+    # Prepend Error block if any
+    error_prefix = ""
+    if errors:
+        error_prefix = "🚨 **SYSTEM ERRORS DETECTED** 🚨\n"
+        for err in errors:
+            error_prefix += f"- {err}\n"
+        error_prefix += "\n---\n\n"
+    
     # Format message
+    full_content = f"{error_prefix}**{subject}**\n\n{text_content}"
     message = {
-        "content": f"**{subject}**\n\n{text_content[:1900]}" # Discord limit is 2000 chars
+        "content": full_content[:1900] # Discord limit is 2000 chars
     }
     
     try:
