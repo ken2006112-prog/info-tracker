@@ -19,7 +19,8 @@ def scrape_facebook_page(config):
         
         # Load cookies if available
         context_args = {
-            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "ignore_https_errors": True
         }
         
         # Check for cookies file in config
@@ -129,7 +130,8 @@ def scrape_personal_feed(config):
         
         # Load cookies (MANDATORY for personal feed)
         context_args = {
-            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "ignore_https_errors": True
         }
         
         cookies_file = config['sites']['facebook'].get('cookies_file')

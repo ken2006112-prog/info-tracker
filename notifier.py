@@ -53,7 +53,9 @@ def send_email(config, subject, body_html):
     
     try:
         logging.info(f"Sending email to {recipient}...")
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.ehlo()
+            server.starttls()
             server.login(sender_email, app_password)
             server.sendmail(sender_email, recipient, msg.as_string())
         logging.info("Email sent successfully.")
