@@ -1,6 +1,9 @@
 name: Daily Info Tracker
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     # Runs at 00:00 UTC every day (08:00 AM Taiwan Time)
     - cron: '0 0 * * *'
