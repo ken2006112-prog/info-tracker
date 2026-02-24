@@ -11,6 +11,8 @@ from scrapers.facebook import scrape_facebook_page
 from scrapers.ncu_incu import scrape_ncu_incu
 from scrapers.ncu_career import scrape_ncu_career
 from scrapers.google_site import scrape_google_site
+from scrapers.ncu_finance import scrape_ncu_finance
+from scrapers.ncu_club import scrape_ncu_club
 from notifier import send_email, send_discord_webhook
 from summarizer import summarize_and_format
 
@@ -49,6 +51,14 @@ def main():
     # 2. Scrape NCU Sources
     sites = config.get('sites', {})
     
+    if sites.get('ncu_club', {}).get('enabled', False):
+        logging.info(f"Scraping NCU Club: {sites['ncu_club']['url']}")
+        all_items.extend(scrape_ncu_club(config))
+        
+    if sites.get('ncu_finance', {}).get('enabled', False):
+        logging.info(f"Scraping NCU Finance: {sites['ncu_finance']['url']}")
+        all_items.extend(scrape_ncu_finance(config))
+
     if sites.get('ncu_incu', {}).get('enabled', False):
         logging.info(f"Scraping NCU iNCU: {sites['ncu_incu']['url']}")
         all_items.extend(scrape_ncu_incu(config))

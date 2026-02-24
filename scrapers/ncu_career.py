@@ -8,45 +8,48 @@ def scrape_ncu_career(config):
     Scrapes NCU Career Center activities.
     URL: https://careercenter.ncu.edu.tw/activities
     """
-    url = config['sites']['ncu_career']['url']
+    # Handle both single URL (old config) and list of URLs (new config)
+    urls = config['sites']['ncu_career'].get('urls', [config['sites']['ncu_career'].get('url')])
     data = []
     
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(url, timeout=60000)
+            context = browser.new_context()
+            page = context.new_page()
             
-            # The structure seems to be rows with 3 p tags: Start Date, End Date, Title
-            # We target the rows
-            rows = page.locator(".list-item-row").all()
-            
-            for row in rows[:10]: # Limit to top 10
-                try:
-                    # Get all p tags in this row
-                    texts = row.locator("p").all_inner_texts()
-                    if len(texts) >= 3:
-                        date_str = texts[0].strip() # 2026-04-20 13:00
-                        title = texts[2].strip() # Title
-                        
-                        # Get link from parent 'a' tag
-                        link_element = row.locator("..") # Parent is the <a> tag
-                        link = link_element.get_attribute("href")
-                        
-                        # Construct full URL if relative
-                        target_url = link
-                        if link and not link.startswith("http"):
-                           target_url = f"https://careercenter.ncu.edu.tw{link}" # Or it might point to iNCU directly
-
-                        data.append({
-                            "title": title,
-                            "url": target_url,
-                            "date": date_str,
-                            "source": "NCU Career Center"
-                        })
-                except Exception as e:
-                    logging.error(f"Error parsing career row: {e}")
-                    continue
+            for url in urls:
+                if not url: continue
+                logging.info(f"Scraping NCU Career: {url}")
+                page.goto(url, timeout=60000)
+                
+                rows = page.locator(".list-item-row").all()
+                for row in rows[:10]: # Limit to top 10 per page
+                    try:
+                        texts = row.locator("p").all_inner_texts()
+                        if len(texts) >= 3:
+                            date_str = texts[0].strip()
+                            # Distinguish between Activity (Start, End, Title) and News (Date, Title, Clicks)
+                            title = texts[2].strip() 
+                            if "點閱" in title or title.isdigit() or len(texts[-1]) < 15:
+                                title = texts[1].strip()
+                                
+                            link_element = row.locator("..") # Parent is the <a> tag
+                            link = link_element.get_attribute("href")
+                            
+                            target_url = link
+                            if link and not link.startswith("http"):
+                               target_url = f"https://careercenter.ncu.edu.tw{link}"
+    
+                            data.append({
+                                "title": title,
+                                "url": target_url,
+                                "date": date_str,
+                                "source": f"NCU Career Center ({url.split('/')[-1]})"
+                            })
+                    except Exception as e:
+                        logging.error(f"Error parsing career row: {e}")
+                        continue
             
             browser.close()
             

@@ -1,77 +1,59 @@
-#!/usr/bin/env python3
-import requests
-from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 import logging
-from datetime import datetime, timedelta
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def scrape_ncu_club(config):
     """
-    Scrapes the NCU Club website for latest announcements.
-    Returns a list of dictionaries with 'title', 'date', and 'link'.
+    Scrapes NCU Club Official Announcements.
     """
     url = config['sites']['ncu_club']['url']
-    logging.info(f"Scraping NCU Club: {url}")
+    data = []
     
     try:
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        announcements = []
-        
-        # Look for the general announcements section based on the HTML provided earlier
-        # The structure seemed to be list items with dates and links.
-        # We'll use a generic approach to find list items containing dates in standard formats.
-        
-        # Based on previous analysis: 
-        # <li class="..."><span class="date">...</span><a href="...">...</a></li>
-        # Let's try to be robust.
-        
-        # Calculate yesterday's date
-        yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        # logging.info(f"Filtering for announcements from: {yesterday}") # Optional debug
-
-        for item in soup.find_all('li'):
-            text = item.get_text()
-            # Simple date check
-            if any(char.isdigit() for char in text) and '-' in text:
-                 # Extract link and title
-                link_tag = item.find('a')
-                if link_tag:
-                    title = link_tag.get_text(strip=True)
-                    link = link_tag.get('href')
-                    if not link.startswith('http'):
-                        link = requests.compat.urljoin(url, link)
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            logging.info(f"Scraping NCU Club: {url}")
+            page.goto(url, timeout=60000)
+            
+            # Selector from browser subagent: table tbody tr (skipping the first header row)
+            rows = page.locator("table tbody tr").all()
+            
+            # Rows might include a header row, so we skip index 0
+            for row in rows[1:11]: 
+                try:
+                    # Date: td:nth-child(2)
+                    date_locator = row.locator("td:nth-child(2)")
+                    if date_locator.count() == 0: continue
+                    date_str = date_locator.inner_text().strip()
                     
-                    # Extract date
-                    date_str = "Unknown"
-                    import re
-                    match = re.search(r'\d{4}-\d{2}-\d{2}', text)
-                    if match:
-                        date_str = match.group(0)
+                    # Title: td:nth-child(4)
+                    title = row.locator("td:nth-child(4)").inner_text().strip()
+                    if not title: continue
                     
-                    # STRICT FILTER: Only include if date matches yesterday
-                    if date_str == yesterday:
-                        announcements.append({
-                            'source': 'NCU Club',
-                            'title': title,
-                            'date': date_str,
-                            'link': link
-                        })
-        
-        return announcements # Already filtered
+                    # Links: td:nth-child(5) a
+                    link_locator = row.locator("td:nth-child(5) a").first
+                    target_url = url # Default to the page itself if no attachment
+                    
+                    if link_locator.count() > 0:
+                        link = link_locator.get_attribute("href")
+                        if link and not link.startswith("http"):
+                           target_url = f"https://club.adm.ncu.edu.tw{link}"
+                        elif link:
+                           target_url = link
 
+                    data.append({
+                        "title": title,
+                        "url": target_url,
+                        "date": date_str,
+                        "source": "NCU Club Announcements"
+                    })
+                except Exception as e:
+                    logging.error(f"Error parsing NCU Club row: {e}")
+                    continue
+            
+            browser.close()
+            
     except Exception as e:
         logging.error(f"Error scraping NCU Club: {e}")
-        return []
-
-if __name__ == "__main__":
-    # Test run
-    config = {'sites': {'ncu_club': {'url': 'https://club.adm.ncu.edu.tw/'}}}
-    results = scrape_ncu_club(config)
-    print(f"Found {len(results)} posts from yesterday.")
-    for r in results:
-        print(r)
+        
+    return data
