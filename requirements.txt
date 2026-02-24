@@ -1,4 +1,3 @@
-pgoogle-generativeai
 groq
 beautifulsoup4
 playwright
