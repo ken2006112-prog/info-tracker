@@ -91,13 +91,10 @@ def scrape_facebook_page(config):
                 for article in articles: 
                     text = article.get_text(separator=' | ', strip=True)
                     
-                    # Check for date keywords in the text
-                    is_recent = any(k in text for k in recent_keywords)
-                    
                     # Debug print
-                    logging.info(f"Checking post (len={len(text)}): {text[:30]}... Recent? {is_recent}")
+                    logging.info(f"Checking post (len={len(text)}): {text[:30]}...")
 
-                    if is_recent and len(text) > 20: # Lower threshold to 20
+                    if len(text) > 10 and "log in" not in text.lower() and "forgot password" not in text.lower():
                         # clean text
                         clean_text = text.replace('|', '\n')
                         
@@ -109,7 +106,7 @@ def scrape_facebook_page(config):
                             'link': url
                         })
                         found_count += 1
-                        if found_count >= 5: break # Cap at 5 relevant posts
+                        if found_count >= 3: break # Cap at 3 relevant posts per page
                 
             except Exception as e:
                 logging.error(f"Error scraping {name}: {e}")
@@ -277,7 +274,7 @@ def scrape_personal_feed(config):
                 if link and link.startswith('/'): 
                     link = f"https://www.facebook.com{link}"
                 
-                if len(clean_text) > 30: # Restore threshold
+                if len(clean_text) > 10: # Restore threshold
                     posts.append({
                         'source': f'Personal Feed ({author})',
                         'title': clean_text[:80] + '...',
@@ -290,7 +287,7 @@ def scrape_personal_feed(config):
                 
                 # Identify "Suggested for you" or similar recommendation text if possible
                 
-                if len(clean_text) > 30: # Lower threshold to catch shorter posts
+                if len(clean_text) > 10: # Lower threshold to catch shorter posts
                     posts.append({
                         'source': f'Personal Feed ({author})',
                         'title': clean_text[:80] + '...',
