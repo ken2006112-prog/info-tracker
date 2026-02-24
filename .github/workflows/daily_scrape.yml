@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          playwright install chromium
+          python -m pip install -r requirements.txt
+          python -m playwright install chromium --with-deps
 
       - name: Create Config Files from Secrets
         env:
