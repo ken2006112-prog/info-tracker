@@ -1,6 +1,7 @@
-playwright
+pgoogle-generativeai
+groq
 beautifulsoup4
-requests
+playwright
 pyyaml
 lxml
 openai

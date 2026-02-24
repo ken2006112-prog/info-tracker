@@ -1,0 +1,494 @@
+﻿2026-02-15T03:56:13.1333799Z Current runner version: '2.331.0'
+2026-02-15T03:56:13.1363055Z ##***group***Runner Image Provisioner
+2026-02-15T03:56:13.1364835Z Hosted Compute Agent
+2026-02-15T03:56:13.1366181Z Version: 20260123.484
+2026-02-15T03:56:13.1367657Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+2026-02-15T03:56:13.1369190Z Build Date: 2026-01-23T19:41:17Z
+2026-02-15T03:56:13.1370841Z Worker ID: ***7bf5e319-a7ef-4f1e-9030-c11811ad2256***
+2026-02-15T03:56:13.1372889Z Azure Region: westcentralus
+2026-02-15T03:56:13.1374426Z ##***endgroup***
+2026-02-15T03:56:13.1376850Z ##***group***Operating System
+2026-02-15T03:56:13.1378345Z Ubuntu
+2026-02-15T03:56:13.1379744Z 24.04.3
+2026-02-15T03:56:13.1380923Z LTS
+2026-02-15T03:56:13.1382805Z ##***endgroup***
+2026-02-15T03:56:13.1384183Z ##***group***Runner Image
+2026-02-15T03:56:13.1385645Z Image: ubuntu-24.04
+2026-02-15T03:56:13.1386945Z Version: 20260209.23.1
+2026-02-15T03:56:13.1389028Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260209.23/images/ubuntu/Ubuntu2404-Readme.md
+2026-02-15T03:56:13.1391956Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260209.23
+2026-02-15T03:56:13.1393753Z ##***endgroup***
+2026-02-15T03:56:13.1398293Z ##***group***GITHUB_TOKEN Permissions
+2026-02-15T03:56:13.1401234Z Actions: write
+2026-02-15T03:56:13.1402871Z ArtifactMetadata: write
+2026-02-15T03:56:13.1404251Z Attestations: write
+2026-02-15T03:56:13.1405554Z Checks: write
+2026-02-15T03:56:13.1406777Z Contents: write
+2026-02-15T03:56:13.1408126Z Deployments: write
+2026-02-15T03:56:13.1409352Z Discussions: write
+2026-02-15T03:56:13.1410663Z Issues: write
+2026-02-15T03:56:13.1412342Z Metadata: read
+2026-02-15T03:56:13.1413665Z Models: read
+2026-02-15T03:56:13.1414984Z Packages: write
+2026-02-15T03:56:13.1416278Z Pages: write
+2026-02-15T03:56:13.1417804Z PullRequests: write
+2026-02-15T03:56:13.1419145Z RepositoryProjects: write
+2026-02-15T03:56:13.1420510Z SecurityEvents: write
+2026-02-15T03:56:13.1422032Z Statuses: write
+2026-02-15T03:56:13.1423370Z ##***endgroup***
+2026-02-15T03:56:13.1426430Z Secret source: Actions
+2026-02-15T03:56:13.1427987Z Prepare workflow directory
+2026-02-15T03:56:13.1790973Z Prepare all required actions
+2026-02-15T03:56:13.1830380Z Getting action download info
+2026-02-15T03:56:13.5431776Z Download action repository 'actions/checkout@v3' (SHA:f43a0e5ff2bd294095638e18286ca9a3d1956744)
+2026-02-15T03:56:13.6948401Z Download action repository 'actions/setup-python@v4' (SHA:7f4fc3e22c37d6ff65e88745f38bd3157c663f7c)
+2026-02-15T03:56:13.9170098Z Complete job name: scrape_and_email
+2026-02-15T03:56:14.0053743Z ##***group***Run actions/checkout@v3
+2026-02-15T03:56:14.0055212Z with:
+2026-02-15T03:56:14.0056165Z   repository: ken2006112-prog/info-tracker
+2026-02-15T03:56:14.0057404Z   token: ***
+2026-02-15T03:56:14.0058302Z   ssh-strict: true
+2026-02-15T03:56:14.0059227Z   persist-credentials: true
+2026-02-15T03:56:14.0060175Z   clean: true
+2026-02-15T03:56:14.0061080Z   sparse-checkout-cone-mode: true
+2026-02-15T03:56:14.0062845Z   fetch-depth: 1
+2026-02-15T03:56:14.0063776Z   fetch-tags: false
+2026-02-15T03:56:14.0064655Z   lfs: false
+2026-02-15T03:56:14.0065532Z   submodules: false
+2026-02-15T03:56:14.0066453Z   set-safe-directory: true
+2026-02-15T03:56:14.0067750Z ##***endgroup***
+2026-02-15T03:56:14.0994425Z Syncing repository: ken2006112-prog/info-tracker
+2026-02-15T03:56:14.0997194Z ##***group***Getting Git version info
+2026-02-15T03:56:14.0998502Z Working directory is '/home/runner/work/info-tracker/info-tracker'
+2026-02-15T03:56:14.1000295Z ***command***/usr/bin/git version
+2026-02-15T03:56:14.1002358Z git version 2.52.0
+2026-02-15T03:56:14.1032121Z ##***endgroup***
+2026-02-15T03:56:14.1052398Z Temporarily overriding HOME='/home/runner/work/_temp/ad4125b4-b5ea-4dcf-96f5-0faa0f40483c' before making global git config changes
+2026-02-15T03:56:14.1054425Z Adding repository directory to the temporary git global config as a safe directory
+2026-02-15T03:56:14.1057792Z ***command***/usr/bin/git config --global --add safe.directory /home/runner/work/info-tracker/info-tracker
+2026-02-15T03:56:14.1105189Z Deleting the contents of '/home/runner/work/info-tracker/info-tracker'
+2026-02-15T03:56:14.1111079Z ##***group***Initializing the repository
+2026-02-15T03:56:14.1115865Z ***command***/usr/bin/git init /home/runner/work/info-tracker/info-tracker
+2026-02-15T03:56:14.1220661Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-02-15T03:56:14.1223390Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-02-15T03:56:14.1225578Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-02-15T03:56:14.1227903Z hint: call:
+2026-02-15T03:56:14.1229451Z hint:
+2026-02-15T03:56:14.1231257Z hint: 	git config --global init.defaultBranch <name>
+2026-02-15T03:56:14.1233444Z hint:
+2026-02-15T03:56:14.1235313Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-02-15T03:56:14.1237944Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-02-15T03:56:14.1240030Z hint:
+2026-02-15T03:56:14.1241703Z hint: 	git branch -m <name>
+2026-02-15T03:56:14.1243537Z hint:
+2026-02-15T03:56:14.1244711Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-02-15T03:56:14.1246352Z Initialized empty Git repository in /home/runner/work/info-tracker/info-tracker/.git/
+2026-02-15T03:56:14.1250314Z ***command***/usr/bin/git remote add origin https://github.com/ken2006112-prog/info-tracker
+2026-02-15T03:56:14.1278271Z ##***endgroup***
+2026-02-15T03:56:14.1281170Z ##***group***Disabling automatic garbage collection
+2026-02-15T03:56:14.1283544Z ***command***/usr/bin/git config --local gc.auto 0
+2026-02-15T03:56:14.1313377Z ##***endgroup***
+2026-02-15T03:56:14.1316056Z ##***group***Setting up auth
+2026-02-15T03:56:14.1319001Z ***command***/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-02-15T03:56:14.1351088Z ***command***/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-02-15T03:56:14.1700207Z ***command***/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-02-15T03:56:14.1736871Z ***command***/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-02-15T03:56:14.2013711Z ***command***/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-02-15T03:56:14.2055535Z ##***endgroup***
+2026-02-15T03:56:14.2057170Z ##***group***Fetching the repository
+2026-02-15T03:56:14.2068351Z ***command***/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +a6e3f8ee0b4db08b9ca8a2a2624568c023cbc127:refs/remotes/origin/master
+2026-02-15T03:56:14.5666493Z remote: Enumerating objects: 21, done.        
+2026-02-15T03:56:14.5675185Z remote: Counting objects:   4% (1/21)        
+2026-02-15T03:56:14.5677146Z remote: Counting objects:   9% (2/21)        
+2026-02-15T03:56:14.5678337Z remote: Counting objects:  14% (3/21)        
+2026-02-15T03:56:14.5679509Z remote: Counting objects:  19% (4/21)        
+2026-02-15T03:56:14.5680674Z remote: Counting objects:  23% (5/21)        
+2026-02-15T03:56:14.5682131Z remote: Counting objects:  28% (6/21)        
+2026-02-15T03:56:14.5683295Z remote: Counting objects:  33% (7/21)        
+2026-02-15T03:56:14.5684478Z remote: Counting objects:  38% (8/21)        
+2026-02-15T03:56:14.5685632Z remote: Counting objects:  42% (9/21)        
+2026-02-15T03:56:14.5686811Z remote: Counting objects:  47% (10/21)        
+2026-02-15T03:56:14.5688029Z remote: Counting objects:  52% (11/21)        
+2026-02-15T03:56:14.5689210Z remote: Counting objects:  57% (12/21)        
+2026-02-15T03:56:14.5690369Z remote: Counting objects:  61% (13/21)        
+2026-02-15T03:56:14.5692277Z remote: Counting objects:  66% (14/21)        
+2026-02-15T03:56:14.5693548Z remote: Counting objects:  71% (15/21)        
+2026-02-15T03:56:14.5694812Z remote: Counting objects:  76% (16/21)        
+2026-02-15T03:56:14.5696264Z remote: Counting objects:  80% (17/21)        
+2026-02-15T03:56:14.5697552Z remote: Counting objects:  85% (18/21)        
+2026-02-15T03:56:14.5698808Z remote: Counting objects:  90% (19/21)        
+2026-02-15T03:56:14.5700169Z remote: Counting objects:  95% (20/21)        
+2026-02-15T03:56:14.5701664Z remote: Counting objects: 100% (21/21)        
+2026-02-15T03:56:14.5702810Z remote: Counting objects: 100% (21/21), done.        
+2026-02-15T03:56:14.5703953Z remote: Compressing objects:   5% (1/17)        
+2026-02-15T03:56:14.5705074Z remote: Compressing objects:  11% (2/17)        
+2026-02-15T03:56:14.5706186Z remote: Compressing objects:  17% (3/17)        
+2026-02-15T03:56:14.5707297Z remote: Compressing objects:  23% (4/17)        
+2026-02-15T03:56:14.5708406Z remote: Compressing objects:  29% (5/17)        
+2026-02-15T03:56:14.5709512Z remote: Compressing objects:  35% (6/17)        
+2026-02-15T03:56:14.5710621Z remote: Compressing objects:  41% (7/17)        
+2026-02-15T03:56:14.5712028Z remote: Compressing objects:  47% (8/17)        
+2026-02-15T03:56:14.5713167Z remote: Compressing objects:  52% (9/17)        
+2026-02-15T03:56:14.5714295Z remote: Compressing objects:  58% (10/17)        
+2026-02-15T03:56:14.5715436Z remote: Compressing objects:  64% (11/17)        
+2026-02-15T03:56:14.5716556Z remote: Compressing objects:  70% (12/17)        
+2026-02-15T03:56:14.5717675Z remote: Compressing objects:  76% (13/17)        
+2026-02-15T03:56:14.5718778Z remote: Compressing objects:  82% (14/17)        
+2026-02-15T03:56:14.5719878Z remote: Compressing objects:  88% (15/17)        
+2026-02-15T03:56:14.5720993Z remote: Compressing objects:  94% (16/17)        
+2026-02-15T03:56:14.5722348Z remote: Compressing objects: 100% (17/17)        
+2026-02-15T03:56:14.5723512Z remote: Compressing objects: 100% (17/17), done.        
+2026-02-15T03:56:14.5953802Z remote: Total 21 (delta 0), reused 18 (delta 0), pack-reused 0 (from 0)        
+2026-02-15T03:56:14.6008997Z From https://github.com/ken2006112-prog/info-tracker
+2026-02-15T03:56:14.6010697Z  * ***new ref***         a6e3f8ee0b4db08b9ca8a2a2624568c023cbc127 -> origin/master
+2026-02-15T03:56:14.6105260Z ##***endgroup***
+2026-02-15T03:56:14.6108614Z ##***group***Determining the checkout info
+2026-02-15T03:56:14.6112860Z ##***endgroup***
+2026-02-15T03:56:14.6115735Z ##***group***Checking out the ref
+2026-02-15T03:56:14.6118750Z ***command***/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+2026-02-15T03:56:14.6121618Z Reset branch 'master'
+2026-02-15T03:56:14.6123687Z branch 'master' set up to track 'origin/master'.
+2026-02-15T03:56:14.6134367Z ##***endgroup***
+2026-02-15T03:56:14.6176684Z ***command***/usr/bin/git log -1 --format='%H'
+2026-02-15T03:56:14.6202598Z 'a6e3f8ee0b4db08b9ca8a2a2624568c023cbc127'
+2026-02-15T03:56:14.6607573Z ##***group***Run actions/setup-python@v4
+2026-02-15T03:56:14.6609625Z with:
+2026-02-15T03:56:14.6611622Z   python-version: 3.12
+2026-02-15T03:56:14.6613506Z   check-latest: false
+2026-02-15T03:56:14.6615565Z   token: ***
+2026-02-15T03:56:14.6617357Z   update-environment: true
+2026-02-15T03:56:14.6619281Z   allow-prereleases: false
+2026-02-15T03:56:14.6621132Z ##***endgroup***
+2026-02-15T03:56:14.8385605Z ##***group***Installed versions
+2026-02-15T03:56:14.8496251Z Successfully set up CPython (3.12.12)
+2026-02-15T03:56:14.8502041Z ##***endgroup***
+2026-02-15T03:56:14.8684360Z ##***group***Run python -m pip install --upgrade pip
+2026-02-15T03:56:14.8686989Z ***36;1mpython -m pip install --upgrade pip***0m
+2026-02-15T03:56:14.8689355Z ***36;1mpip install -r requirements.txt***0m
+2026-02-15T03:56:14.8691858Z ***36;1mplaywright install chromium***0m
+2026-02-15T03:56:14.8901134Z shell: /usr/bin/bash -e ***0***
+2026-02-15T03:56:14.8903240Z env:
+2026-02-15T03:56:14.8905168Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:14.8908276Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-02-15T03:56:14.8911143Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:14.8913954Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:14.8916593Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:14.8919241Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-02-15T03:56:14.8921691Z ##***endgroup***
+2026-02-15T03:56:17.0461094Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.12/x64/lib/python3.12/site-packages (26.0.1)
+2026-02-15T03:56:17.9673398Z Collecting playwright (from -r requirements.txt (line 1))
+2026-02-15T03:56:18.0709854Z   Downloading playwright-1.58.0-py3-none-manylinux1_x86_64.whl.metadata (3.5 kB)
+2026-02-15T03:56:18.1096021Z Collecting beautifulsoup4 (from -r requirements.txt (line 2))
+2026-02-15T03:56:18.1296329Z   Downloading beautifulsoup4-4.14.3-py3-none-any.whl.metadata (3.8 kB)
+2026-02-15T03:56:18.1766578Z Collecting requests (from -r requirements.txt (line 3))
+2026-02-15T03:56:18.1965274Z   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+2026-02-15T03:56:18.2595075Z Collecting pyyaml (from -r requirements.txt (line 4))
+2026-02-15T03:56:18.2798606Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-02-15T03:56:18.5587480Z Collecting lxml (from -r requirements.txt (line 5))
+2026-02-15T03:56:18.5783407Z   Downloading lxml-6.0.2-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.6 kB)
+2026-02-15T03:56:18.6111707Z Collecting pyee<14,>=13 (from playwright->-r requirements.txt (line 1))
+2026-02-15T03:56:18.6319307Z   Downloading pyee-13.0.1-py3-none-any.whl.metadata (3.0 kB)
+2026-02-15T03:56:18.8037120Z Collecting greenlet<4.0.0,>=3.1.1 (from playwright->-r requirements.txt (line 1))
+2026-02-15T03:56:18.8270577Z   Downloading greenlet-3.3.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.7 kB)
+2026-02-15T03:56:18.8691959Z Collecting typing-extensions (from pyee<14,>=13->playwright->-r requirements.txt (line 1))
+2026-02-15T03:56:18.8891285Z   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+2026-02-15T03:56:18.9232985Z Collecting soupsieve>=1.6.1 (from beautifulsoup4->-r requirements.txt (line 2))
+2026-02-15T03:56:18.9434807Z   Downloading soupsieve-2.8.3-py3-none-any.whl.metadata (4.6 kB)
+2026-02-15T03:56:19.0593795Z Collecting charset_normalizer<4,>=2 (from requests->-r requirements.txt (line 3))
+2026-02-15T03:56:19.0788912Z   Downloading charset_normalizer-3.4.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (37 kB)
+2026-02-15T03:56:19.1199273Z Collecting idna<4,>=2.5 (from requests->-r requirements.txt (line 3))
+2026-02-15T03:56:19.1397976Z   Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+2026-02-15T03:56:19.1815214Z Collecting urllib3<3,>=1.21.1 (from requests->-r requirements.txt (line 3))
+2026-02-15T03:56:19.2010508Z   Downloading urllib3-2.6.3-py3-none-any.whl.metadata (6.9 kB)
+2026-02-15T03:56:19.2385641Z Collecting certifi>=2017.4.17 (from requests->-r requirements.txt (line 3))
+2026-02-15T03:56:19.2628378Z   Downloading certifi-2026.1.4-py3-none-any.whl.metadata (2.5 kB)
+2026-02-15T03:56:19.2915080Z Downloading playwright-1.58.0-py3-none-manylinux1_x86_64.whl (46.2 MB)
+2026-02-15T03:56:19.6603932Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.2/46.2 MB 138.2 MB/s  0:00:00
+2026-02-15T03:56:19.6802841Z Downloading greenlet-3.3.1-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (609 kB)
+2026-02-15T03:56:19.6870359Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 609.9/609.9 kB 86.9 MB/s  0:00:00
+2026-02-15T03:56:19.7065214Z Downloading pyee-13.0.1-py3-none-any.whl (15 kB)
+2026-02-15T03:56:19.7282682Z Downloading beautifulsoup4-4.14.3-py3-none-any.whl (107 kB)
+2026-02-15T03:56:19.7503734Z Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+2026-02-15T03:56:19.7720424Z Downloading charset_normalizer-3.4.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (153 kB)
+2026-02-15T03:56:19.7940940Z Downloading idna-3.11-py3-none-any.whl (71 kB)
+2026-02-15T03:56:19.8211908Z Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
+2026-02-15T03:56:19.8435474Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-02-15T03:56:19.8533868Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 89.3 MB/s  0:00:00
+2026-02-15T03:56:19.8770527Z Downloading lxml-6.0.2-cp312-cp312-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.3 MB)
+2026-02-15T03:56:19.9173922Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 133.6 MB/s  0:00:00
+2026-02-15T03:56:19.9367347Z Downloading certifi-2026.1.4-py3-none-any.whl (152 kB)
+2026-02-15T03:56:19.9594308Z Downloading soupsieve-2.8.3-py3-none-any.whl (37 kB)
+2026-02-15T03:56:19.9824999Z Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+2026-02-15T03:56:20.0622014Z Installing collected packages: urllib3, typing-extensions, soupsieve, pyyaml, lxml, idna, greenlet, charset_normalizer, certifi, requests, pyee, beautifulsoup4, playwright
+2026-02-15T03:56:21.5438138Z 
+2026-02-15T03:56:21.5457249Z Successfully installed beautifulsoup4-4.14.3 certifi-2026.1.4 charset_normalizer-3.4.4 greenlet-3.3.1 idna-3.11 lxml-6.0.2 playwright-1.58.0 pyee-13.0.1 pyyaml-6.0.3 requests-2.32.5 soupsieve-2.8.3 typing-extensions-4.15.0 urllib3-2.6.3
+2026-02-15T03:56:22.0994171Z Downloading Chrome for Testing 145.0.7632.6 (playwright chromium v1208) from https://cdn.playwright.dev/chrome-for-testing-public/145.0.7632.6/linux64/chrome-linux64.zip
+2026-02-15T03:56:22.2130318Z (node:2274) ***DEP0169*** DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-02-15T03:56:22.2134416Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-15T03:56:22.3731184Z |                                                                                |   0% of 167.3 MiB
+2026-02-15T03:56:22.5558966Z |■■■■■■■■                                                                        |  10% of 167.3 MiB
+2026-02-15T03:56:22.6617487Z |■■■■■■■■■■■■■■■■                                                                |  20% of 167.3 MiB
+2026-02-15T03:56:22.7483780Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 167.3 MiB
+2026-02-15T03:56:22.8286232Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 167.3 MiB
+2026-02-15T03:56:22.8942291Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 167.3 MiB
+2026-02-15T03:56:22.9880433Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 167.3 MiB
+2026-02-15T03:56:23.0703325Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 167.3 MiB
+2026-02-15T03:56:23.1409325Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 167.3 MiB
+2026-02-15T03:56:23.2261139Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 167.3 MiB
+2026-02-15T03:56:23.2997123Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 167.3 MiB
+2026-02-15T03:56:26.2477334Z Chrome for Testing 145.0.7632.6 (playwright chromium v1208) downloaded to /home/runner/.cache/ms-playwright/chromium-1208
+2026-02-15T03:56:26.2482535Z Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+2026-02-15T03:56:26.3559422Z (node:2286) ***DEP0169*** DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-02-15T03:56:26.3562916Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-15T03:56:26.4674015Z |                                                                                |   0% of 2.3 MiB
+2026-02-15T03:56:26.5072224Z |■■■■■■■■                                                                        |  10% of 2.3 MiB
+2026-02-15T03:56:26.5237238Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+2026-02-15T03:56:26.5375422Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+2026-02-15T03:56:26.5408224Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+2026-02-15T03:56:26.5439682Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+2026-02-15T03:56:26.5548902Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+2026-02-15T03:56:26.5567199Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+2026-02-15T03:56:26.5589411Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+2026-02-15T03:56:26.5607665Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+2026-02-15T03:56:26.5660864Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+2026-02-15T03:56:26.6277623Z FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+2026-02-15T03:56:26.6282080Z Downloading Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) from https://cdn.playwright.dev/chrome-for-testing-public/145.0.7632.6/linux64/chrome-headless-shell-linux64.zip
+2026-02-15T03:56:26.7369427Z (node:2297) ***DEP0169*** DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-02-15T03:56:26.7372876Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-15T03:56:26.8609477Z |                                                                                |   0% of 110.9 MiB
+2026-02-15T03:56:27.0035793Z |■■■■■■■■                                                                        |  10% of 110.9 MiB
+2026-02-15T03:56:27.0678032Z |■■■■■■■■■■■■■■■■                                                                |  20% of 110.9 MiB
+2026-02-15T03:56:27.1207190Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 110.9 MiB
+2026-02-15T03:56:27.1741510Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 110.9 MiB
+2026-02-15T03:56:27.2325149Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 110.9 MiB
+2026-02-15T03:56:27.2890044Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 110.9 MiB
+2026-02-15T03:56:27.3432827Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 110.9 MiB
+2026-02-15T03:56:27.3892759Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 110.9 MiB
+2026-02-15T03:56:27.4319504Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 110.9 MiB
+2026-02-15T03:56:27.4838295Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 110.9 MiB
+2026-02-15T03:56:29.7410002Z Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1208
+2026-02-15T03:56:29.7733568Z ##***group***Run echo "$CONFIG_YAML" > config.yaml
+2026-02-15T03:56:29.7734628Z ***36;1mecho "$CONFIG_YAML" > config.yaml***0m
+2026-02-15T03:56:29.7735575Z ***36;1mecho "$COOKIES_JSON" > cookies.json***0m
+2026-02-15T03:56:29.7736729Z ***36;1m# Inject Discord Webhook from secret if it exists (optional override)***0m
+2026-02-15T03:56:29.7738000Z ***36;1m# Or user can just put the webhook inside CONFIG_YAML.***0m
+2026-02-15T03:56:29.7759395Z ***36;1m# But providing a separate secret is safer/easier for some.***0m
+2026-02-15T03:56:29.7760840Z ***36;1m# For simplicity, let's assume user puts the webhook INSIDE CONFIG_YAML.***0m
+2026-02-15T03:56:29.7762381Z ***36;1m# So no change needed here actually, unless we want to force it.***0m
+2026-02-15T03:56:29.7763888Z ***36;1m# Let's keep it simple: User edits config.yaml locally, pastes webhook, then copies content to secret.***0m
+2026-02-15T03:56:29.7836437Z shell: /usr/bin/bash -e ***0***
+2026-02-15T03:56:29.7837234Z env:
+2026-02-15T03:56:29.7838133Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.7839282Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-02-15T03:56:29.7840404Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.7841709Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.7842761Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.7843818Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-02-15T03:56:29.7852196Z   CONFIG_YAML: ***
+
+2026-02-15T03:56:29.7855587Z   COOKIES_JSON: ***
+2026-02-15T03:56:29.7856313Z ##***endgroup***
+2026-02-15T03:56:29.8008267Z ##***group***Run python main.py
+2026-02-15T03:56:29.8008868Z ***36;1mpython main.py***0m
+2026-02-15T03:56:29.8062800Z shell: /usr/bin/bash -e ***0***
+2026-02-15T03:56:29.8063303Z env:
+2026-02-15T03:56:29.8063828Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.8064519Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib/pkgconfig
+2026-02-15T03:56:29.8065192Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.8065862Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.8066721Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.12/x64
+2026-02-15T03:56:29.8067347Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.12/x64/lib
+2026-02-15T03:56:29.8067952Z ##***endgroup***
+2026-02-15T03:56:30.6142974Z 2026-02-15 03:56:30,613 - INFO - Scraping NCU Club: https://club.adm.ncu.edu.tw/
+2026-02-15T03:56:38.6246841Z 2026-02-15 03:56:38,624 - INFO - Loaded 1 valid cookies out of 3.
+2026-02-15T03:56:38.6655936Z 2026-02-15 03:56:38,665 - INFO - Scraping Facebook: Generative AI 技術交流中心 (https://www.facebook.com/groups/OpenAI.ChatGPT.TW/)
+2026-02-15T03:56:45.6941015Z 2026-02-15 03:56:45,693 - INFO - Scraping Facebook: Arduino Project (https://www.facebook.com/groups/Arduino.Taiwan/)
+2026-02-15T03:56:51.6772961Z 2026-02-15 03:56:51,676 - INFO - Scraping Facebook: 臺灣業餘天文聯盟 (https://www.facebook.com/groups/1546878892284988/)
+2026-02-15T03:57:49.6011726Z 2026-02-15 03:57:49,600 - ERROR - Error scraping Google Site: Locator.inner_text: Timeout 30000ms exceeded.
+2026-02-15T03:57:49.6012540Z Call log:
+2026-02-15T03:57:49.6012980Z   - waiting for locator("main")
+2026-02-15T03:57:49.6013294Z 
+2026-02-15T03:57:49.6015327Z 2026-02-15 03:57:49,601 - INFO - Sending email to ken2006112@gmail.com...
+2026-02-15T03:57:50.8998597Z 2026-02-15 03:57:50,899 - INFO - Email sent successfully.
+2026-02-15T03:57:50.8999684Z 2026-02-15 03:57:50,899 - WARNING - Discord enabled but no webhook URL provided.
+2026-02-15T03:57:50.9458919Z Post job cleanup.
+2026-02-15T03:57:51.1167052Z Post job cleanup.
+2026-02-15T03:57:51.1939937Z ***command***/usr/bin/git version
+2026-02-15T03:57:51.1975248Z git version 2.52.0
+2026-02-15T03:57:51.2019154Z Temporarily overriding HOME='/home/runner/work/_temp/1066608b-e0d2-46e5-bc3e-88d7d548b4d9' before making global git config changes
+2026-02-15T03:57:51.2020864Z Adding repository directory to the temporary git global config as a safe directory
+2026-02-15T03:57:51.2023383Z ***command***/usr/bin/git config --global --add safe.directory /home/runner/work/info-tracker/info-tracker
+2026-02-15T03:57:51.2056941Z ***command***/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-02-15T03:57:51.2086786Z ***command***/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-02-15T03:57:51.2328208Z ***command***/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-02-15T03:57:51.2349713Z http.https://github.com/.extraheader
+2026-02-15T03:57:51.2362347Z ***command***/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-02-15T03:57:51.2393851Z ***command***/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-02-15T03:57:51.2748868Z Cleaning up orphan processes
+2026-02-23 17:20:18,097 - INFO - Scraping NCU iNCU: https://cis.ncu.edu.tw/iNCU/publicService/activityQuery
+2026-02-23 17:20:28,329 - INFO - Scraping NCU Career: https://careercenter.ncu.edu.tw/activities
+2026-02-23 17:20:31,446 - INFO - Scraping Adaptive Learning: https://sites.google.com/view/adaptive2021
+2026-02-23 17:21:01,050 - INFO - Scraping NCU iNCU: https://cis.ncu.edu.tw/iNCU/publicService/activityQuery
+2026-02-23 17:21:10,175 - INFO - Scraping NCU Career: https://careercenter.ncu.edu.tw/activities
+2026-02-23 17:21:13,682 - INFO - Scraping Adaptive Learning: https://sites.google.com/view/adaptive2021
+2026-02-23 17:21:22,072 - INFO - Loaded 10 cookies.
+2026-02-23 17:21:22,135 - INFO - Scraping Facebook: HKEPC DIY砌機 超頻散熱 機箱改裝 暨不正常文書機研究所 (https://www.facebook.com/groups/hkepc/)
+2026-02-23 17:21:22,136 - ERROR - Error scraping HKEPC DIY砌機 超頻散熱 機箱改裝 暨不正常文書機研究所: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,136 - INFO - Scraping Facebook: Generative AI 技術交流中心 (https://www.facebook.com/groups/OpenAI.ChatGPT.TW/)
+2026-02-23 17:21:22,136 - ERROR - Error scraping Generative AI 技術交流中心: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,136 - INFO - Scraping Facebook: Arduino Project (https://www.facebook.com/groups/Arduino.Taiwan/)
+2026-02-23 17:21:22,137 - ERROR - Error scraping Arduino Project: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,137 - INFO - Scraping Facebook: 臺灣業餘天文聯盟 (https://www.facebook.com/groups/1546878892284988/)
+2026-02-23 17:21:22,137 - ERROR - Error scraping 臺灣業餘天文聯盟: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,137 - INFO - Scraping Facebook: HKEPC (https://www.facebook.com/groups/hkepc/)
+2026-02-23 17:21:22,137 - ERROR - Error scraping HKEPC: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,137 - INFO - Scraping Facebook: PanSci 科學新聞網 (https://www.facebook.com/PanSci)
+2026-02-23 17:21:22,137 - ERROR - Error scraping PanSci 科學新聞網: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,137 - INFO - Scraping Facebook: 國立中央大學 教務處 NCU OAA (https://www.facebook.com/ncuoaa)
+2026-02-23 17:21:22,137 - ERROR - Error scraping 國立中央大學 教務處 NCU OAA: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,138 - INFO - Scraping Facebook: 國立中央大學 國際產學聯盟 (https://www.facebook.com/NCUGLORIA)
+2026-02-23 17:21:22,138 - ERROR - Error scraping 國立中央大學 國際產學聯盟: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,138 - INFO - Scraping Facebook: 國家地理雜誌 (https://www.facebook.com/ngtw)
+2026-02-23 17:21:22,138 - ERROR - Error scraping 國家地理雜誌: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,138 - INFO - Scraping Facebook: NVIDIA Taiwan (https://www.facebook.com/NVIDIA.TW)
+2026-02-23 17:21:22,138 - ERROR - Error scraping NVIDIA Taiwan: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,138 - INFO - Scraping Facebook: 中央大學學務處職涯發展中心 NCU Career Center (https://www.facebook.com/NCUCareerCenter)
+2026-02-23 17:21:22,139 - ERROR - Error scraping 中央大學學務處職涯發展中心 NCU Career Center: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,139 - INFO - Scraping Facebook: Technews 科技新報 (https://www.facebook.com/technewsinside)
+2026-02-23 17:21:22,139 - ERROR - Error scraping Technews 科技新報: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,139 - INFO - Scraping Facebook: 國立中央大學 National Central University - NCU (https://www.facebook.com/nq.ncu)
+2026-02-23 17:21:22,139 - ERROR - Error scraping 國立中央大學 National Central University - NCU: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,140 - INFO - Scraping Facebook: Will 保哥的技術交流中心 (https://www.facebook.com/will.fans)
+2026-02-23 17:21:22,140 - ERROR - Error scraping Will 保哥的技術交流中心: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,140 - INFO - Scraping Facebook: ChatGPT 生活運用 (https://www.facebook.com/groups/chatgpttw)
+2026-02-23 17:21:22,140 - ERROR - Error scraping ChatGPT 生活運用: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,141 - INFO - Scraping Facebook: MNA 牛耳藝術 (https://www.facebook.com/MNAMusic)
+2026-02-23 17:21:22,141 - ERROR - Error scraping MNA 牛耳藝術: scrape_facebook_page() takes 1 positional argument but 3 were given
+2026-02-23 17:21:22,211 - INFO - Starting Personal Feed Doom Scroll...
+2026-02-23 17:21:23,150 - INFO - Loaded 10 cookies.
+2026-02-23 17:21:23,249 - INFO - Doom Scrolling Personal Feed: https://www.facebook.com/ (Scrolls: 10)
+2026-02-23 17:21:31,402 - INFO - Saved screenshot to debug_facebook_login.png
+2026-02-23 17:21:31,411 - INFO - Scrolling... (1/10)
+2026-02-23 17:21:34,324 - INFO - Scrolling... (2/10)
+2026-02-23 17:21:37,556 - INFO - Scrolling... (3/10)
+2026-02-23 17:21:40,534 - INFO - Scrolling... (4/10)
+2026-02-23 17:21:44,529 - INFO - Scrolling... (5/10)
+2026-02-23 17:21:47,897 - INFO - Scrolling... (6/10)
+2026-02-23 17:21:51,372 - INFO - Scrolling... (7/10)
+2026-02-23 17:21:55,111 - INFO - Scrolling... (8/10)
+2026-02-23 17:21:58,409 - INFO - Scrolling... (9/10)
+2026-02-23 17:22:00,505 - INFO - Scrolling... (10/10)
+2026-02-23 17:22:04,000 - INFO - Saved debug HTML to facebook_feed_debug.html
+2026-02-23 17:22:04,235 - INFO - Found 25 posts in feed (role=article or aria-posinset).
+2026-02-23 17:22:04,447 - INFO - Total items scraped: 36
+2026-02-23 17:22:04,447 - INFO - New items to report: 33
+2026-02-23 17:22:04,448 - INFO - AI Summarization enabled. Processing per source...
+2026-02-23 17:22:05,774 - INFO - Summarizing source: iNCU (20 items)
+2026-02-23 17:22:08,015 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:22:18,071 - INFO - Summarizing source: NCU Career Center (9 items)
+2026-02-23 17:22:19,263 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:22:19,528 - INFO - Scraping NCU iNCU: https://cis.ncu.edu.tw/iNCU/publicService/activityQuery
+2026-02-23 17:22:22,467 - ERROR - Future exception was never retrieved
+future: <Future finished exception=TargetClosedError('Target page, context or browser has been closed')>
+playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+2026-02-23 17:22:29,264 - INFO - Summarizing source: Google Site (1 items)
+2026-02-23 17:22:30,327 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:22:37,470 - INFO - Scraping NCU iNCU: https://cis.ncu.edu.tw/iNCU/publicService/activityQuery
+2026-02-23 17:22:40,332 - INFO - Summarizing source: Personal Feed (HKEPCVerified account) (1 items)
+2026-02-23 17:22:41,307 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:22:46,552 - INFO - Scraping NCU Career: https://careercenter.ncu.edu.tw/activities
+2026-02-23 17:22:49,680 - INFO - Scraping Adaptive Learning: https://sites.google.com/view/adaptive2021
+2026-02-23 17:22:51,310 - INFO - Summarizing source: Personal Feed (哈利說Verified account·Follow) (1 items)
+2026-02-23 17:22:52,462 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:22:57,330 - INFO - Scraping Facebook Groups/Pages...
+2026-02-23 17:22:58,043 - INFO - Loaded 10 valid cookies out of 10.
+2026-02-23 17:22:58,192 - INFO - Scraping Facebook: HKEPC DIY砌機 超頻散熱 機箱改裝 暨不正常文書機研究所 (https://www.facebook.com/groups/hkepc/)
+2026-02-23 17:23:02,466 - INFO - Summarizing source: Personal Feed (國立臺灣大學電機工程學系 NTUEE) (1 items)
+2026-02-23 17:23:03,592 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:23:06,226 - INFO - Checking post (len=85): Octopuscalvin Cheuk | 電腦同andro... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=73): キュウ サー テツ | 幹嘛發「一定要無線」？ | 有線不可... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=72): Ben Yu | 我部機都有咁嘅情況 換過火牛/mon/顯卡... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=73): Chester  Cheung | 試下dp hdmi 交換... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=51): 龍王 | 有錢唔賺罪大惡極 | 16m | Like | R... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:06,226 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:06,226 - INFO - Scraping Facebook: Generative AI 技術交流中心 (https://www.facebook.com/groups/OpenAI.ChatGPT.TW/)
+2026-02-23 17:23:12,827 - INFO - Scraping Facebook: Arduino Project (https://www.facebook.com/groups/Arduino.Taiwan/)
+2026-02-23 17:23:13,595 - INFO - Sending email to ken2006112@gmail.com...
+2026-02-23 17:23:13,595 - INFO - Sending email to ken2006112@gmail.com...
+2026-02-23 17:23:17,377 - INFO - Email sent successfully.
+2026-02-23 17:23:17,378 - INFO - Email sent successfully.
+2026-02-23 17:23:17,378 - INFO - Attempting to send Discord webhook...
+2026-02-23 17:23:17,378 - WARNING - Discord enabled but no webhook URL provided.
+2026-02-23 17:23:19,845 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:19,845 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:19,845 - INFO - Scraping Facebook: 臺灣業餘天文聯盟 (https://www.facebook.com/groups/1546878892284988/)
+2026-02-23 17:23:26,909 - INFO - Scraping Facebook: HKEPC (https://www.facebook.com/groups/hkepc/)
+2026-02-23 17:23:34,213 - INFO - Checking post (len=85): Octopuscalvin Cheuk | 電腦同andro... Recent? False
+2026-02-23 17:23:34,213 - INFO - Checking post (len=73): キュウ サー テツ | 幹嘛發「一定要無線」？ | 有線不可... Recent? False
+2026-02-23 17:23:34,213 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:34,213 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:34,213 - INFO - Scraping Facebook: PanSci 科學新聞網 (https://www.facebook.com/PanSci)
+2026-02-23 17:23:41,910 - INFO - Checking post (len=80): 徐顗棨 | 然後FB上跟油管上偶爾還有白癡在洗樹木前十年的二... Recent? False
+2026-02-23 17:23:41,910 - INFO - Checking post (len=65): 鄒仁華 | 徐顗棨 | 你這純粹就是來秀底線的。 | … |... Recent? False
+2026-02-23 17:23:41,910 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:41,910 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:41,910 - INFO - Scraping Facebook: 國立中央大學 教務處 NCU OAA (https://www.facebook.com/ncuoaa)
+2026-02-23 17:23:49,102 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:49,102 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:49,103 - INFO - Scraping Facebook: 國立中央大學 國際產學聯盟 (https://www.facebook.com/NCUGLORIA)
+2026-02-23 17:23:56,401 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:56,401 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:23:56,401 - INFO - Scraping Facebook: 國家地理雜誌 (https://www.facebook.com/ngtw)
+2026-02-23 17:24:03,394 - INFO - Scraping Facebook: NVIDIA Taiwan (https://www.facebook.com/NVIDIA.TW)
+2026-02-23 17:24:10,450 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:10,450 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:10,450 - INFO - Scraping Facebook: 中央大學學務處職涯發展中心 NCU Career Center (https://www.facebook.com/NCUCareerCenter)
+2026-02-23 17:24:17,140 - INFO - Scraping Facebook: Technews 科技新報 (https://www.facebook.com/technewsinside)
+2026-02-23 17:24:23,896 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:23,896 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:23,897 - INFO - Scraping Facebook: 國立中央大學 National Central University - NCU (https://www.facebook.com/nq.ncu)
+2026-02-23 17:24:30,293 - INFO - Scraping Facebook: Will 保哥的技術交流中心 (https://www.facebook.com/will.fans)
+2026-02-23 17:24:37,180 - INFO - Checking post (len=188): Benzon Chan | 1. 你試試audit 每個op... Recent? False
+2026-02-23 17:24:37,180 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:37,180 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:37,181 - INFO - Scraping Facebook: ChatGPT 生活運用 (https://www.facebook.com/groups/chatgpttw)
+2026-02-23 17:24:44,280 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:44,280 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:44,280 - INFO - Scraping Facebook: MNA 牛耳藝術 (https://www.facebook.com/MNAMusic)
+2026-02-23 17:24:51,401 - INFO - Checking post (len=50): Randi Ross Marodi | So sad... ... Recent? False
+2026-02-23 17:24:51,401 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:51,401 - INFO - Checking post (len=0): ... Recent? False
+2026-02-23 17:24:51,563 - INFO - Starting Personal Feed Doom Scroll...
+2026-02-23 17:24:52,370 - INFO - Loaded 10 cookies.
+2026-02-23 17:24:52,477 - INFO - Doom Scrolling Personal Feed: https://www.facebook.com/ (Scrolls: 10)
+2026-02-23 17:25:00,008 - INFO - Saved screenshot to debug_facebook_login.png
+2026-02-23 17:25:00,014 - INFO - Scrolling... (1/10)
+2026-02-23 17:25:03,443 - INFO - Scrolling... (2/10)
+2026-02-23 17:25:05,723 - INFO - Scrolling... (3/10)
+2026-02-23 17:25:08,939 - INFO - Scrolling... (4/10)
+2026-02-23 17:25:12,076 - INFO - Scrolling... (5/10)
+2026-02-23 17:25:14,472 - INFO - Scrolling... (6/10)
+2026-02-23 17:25:17,891 - INFO - Scrolling... (7/10)
+2026-02-23 17:25:20,489 - INFO - Scrolling... (8/10)
+2026-02-23 17:25:23,424 - INFO - Scrolling... (9/10)
+2026-02-23 17:25:25,868 - INFO - Scrolling... (10/10)
+2026-02-23 17:25:29,783 - INFO - Saved debug HTML to facebook_feed_debug.html
+2026-02-23 17:25:30,111 - INFO - Found 24 posts in feed (role=article or aria-posinset).
+2026-02-23 17:25:30,272 - INFO - Total items scraped: 38
+2026-02-23 17:25:30,272 - INFO - New items to report: 4
+2026-02-23 17:25:30,272 - INFO - AI Summarization enabled. Processing per source...
+2026-02-23 17:25:31,773 - INFO - Summarizing source: Personal Feed (臺灣通吉第一品牌·Join) (1 items)
+2026-02-23 17:25:32,763 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:25:42,811 - INFO - Summarizing source: Personal Feed (Rabbits Chen) (1 items)
+2026-02-23 17:25:43,868 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:25:53,871 - INFO - Summarizing source: Personal Feed (楊志璿·Follow) (1 items)
+2026-02-23 17:25:54,927 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:26:04,930 - INFO - Summarizing source: Personal Feed (HKEPCVerified account) (1 items)
+2026-02-23 17:26:05,920 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-23 17:26:15,922 - INFO - Sending email to ken2006112@gmail.com...
+2026-02-23 17:26:15,924 - INFO - Sending email to ken2006112@gmail.com...
+2026-02-23 17:26:18,216 - INFO - Email sent successfully.
+2026-02-23 17:26:18,217 - INFO - Email sent successfully.
+2026-02-23 17:26:18,218 - INFO - Attempting to send Discord webhook...
+2026-02-23 17:26:18,218 - WARNING - Discord enabled but no webhook URL provided.

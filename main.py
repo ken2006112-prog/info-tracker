@@ -8,10 +8,10 @@ from datetime import datetime, timedelta
 
 # Import custom modules
 from scrapers.facebook import scrape_facebook_page
-from scrapers.incu import scrape_incu, scrape_career_center
-from scrapers.google_sites import scrape_adaptive_learning
-from notifiers.email_sender import send_email
-from notifier import send_discord_notification
+from scrapers.ncu_incu import scrape_ncu_incu
+from scrapers.ncu_career import scrape_ncu_career
+from scrapers.google_site import scrape_google_site
+from notifier import send_email, send_discord_webhook
 from summarizer import summarize_and_format
 
 # Setup Logging
@@ -47,16 +47,19 @@ def main():
     all_items = []
     
     # 2. Scrape NCU Sources
-    if config.get('sources', {}).get('incu_enabled', False):
-        logging.info(f"Scraping NCU Club: {config['sources']['incu_url']}")
-        all_items.extend(scrape_incu(config['sources']['incu_url']))
+    sites = config.get('sites', {})
+    
+    if sites.get('ncu_incu', {}).get('enabled', False):
+        logging.info(f"Scraping NCU iNCU: {sites['ncu_incu']['url']}")
+        all_items.extend(scrape_ncu_incu(config))
         
-        logging.info(f"Scraping NCU Career: {config['sources']['career_url']}")
-        all_items.extend(scrape_career_center(config['sources']['career_url']))
+    if sites.get('ncu_career', {}).get('enabled', False):
+        logging.info(f"Scraping NCU Career: {sites['ncu_career']['url']}")
+        all_items.extend(scrape_ncu_career(config))
 
-    if config.get('sources', {}).get('adaptive_learning_enabled', False):
-         logging.info(f"Scraping Adaptive Learning: {config['sources']['adaptive_learning_url']}")
-         all_items.extend(scrape_adaptive_learning(config['sources']['adaptive_learning_url']))
+    if sites.get('google_site', {}).get('enabled', False):
+         logging.info(f"Scraping Adaptive Learning: {sites['google_site']['url']}")
+         all_items.extend(scrape_google_site(config))
 
     # 3. Scrape KOCPC
     if config.get('kocpc', {}).get('enabled', False):
@@ -65,36 +68,14 @@ def main():
          all_items.extend(scrape_kocpc(config['kocpc']['url']))
 
     # 3. Scrape Facebook Groups
-    fb_pages = config.get('sources', {}).get('facebook_pages', [])
-    if fb_pages:
-        from playwright.sync_api import sync_playwright
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            context = browser.new_context()
-            
-            # Load cookies
-            if os.path.exists('cookies.json'):
-                with open('cookies.json', 'r') as f:
-                    cookies = json.load(f)
-                    context.add_cookies(cookies)
-                    logging.info(f"Loaded {len(cookies)} valid cookies out of 3.")
-            
-            page = context.new_page()
-            
-            for fb_name, fb_url in fb_pages.items():
-                if fb_url:
-                    logging.info(f"Scraping Facebook: {fb_name} ({fb_url})")
-                    try:
-                        fb_items = scrape_facebook_page(page, fb_url, fb_name)
-                        all_items.extend(fb_items)
-                        time.sleep(2) # Polite delay
-                    except Exception as e:
-                        logging.error(f"Error scraping {fb_name}: {e}")
-            
-                    except Exception as e:
-                        logging.error(f"Error scraping {fb_name}: {e}")
-            
-            browser.close()
+    if sites.get('facebook', {}).get('enabled', False):
+        try:
+            from scrapers.facebook import scrape_facebook_page
+            logging.info("Scraping Facebook Groups/Pages...")
+            fb_items = scrape_facebook_page(config)
+            all_items.extend(fb_items)
+        except Exception as e:
+            logging.error(f"Error scraping Facebook Pages: {e}")
 
     # 3.5 Personal Feed "Doom Scroll"
     if config['sites'].get('facebook', {}).get('feed_enabled', False):
@@ -162,11 +143,8 @@ def main():
 
     # Send Discord if enabled
     if config.get('discord', {}).get('enabled', False):
-        webhook_url = config.get('discord', {}).get('webhook_url')
-        if webhook_url:
-            send_discord_notification(webhook_url, f"**{subject}**\n\nCheck your email for the full report.")
-        else:
-            logging.warning("Discord enabled but no webhook URL provided.")
+        logging.info("Attempting to send Discord webhook...")
+        send_discord_webhook(config, subject, report_html)
 
     # 7. Save History
     save_history(history)

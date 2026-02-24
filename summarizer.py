@@ -29,6 +29,9 @@ def summarize_and_format(grouped_data):
             briefing = parts[0].replace("## Briefing", "").strip()
             filtered_log = parts[1].strip()
         
+        # Add Source Title
+        html += f"<h3 style='color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px;'>{source}</h3>"
+
         # 1. AI Aggregated Summary (Briefing)
         if briefing and "nothing significant" not in briefing.lower():
             html += f"<div style='background-color: #f9f9f9; padding: 15px; border-left: 4px solid #3498db; margin-bottom: 15px; color: #444; line-height: 1.6;'>"
